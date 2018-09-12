@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <odoo>
+
+        <!-- Add instructor field to existing view -->
+        <record model="ir.ui.view" id="partner_procurador_form_view">
+            <field name="name">partner.procurador</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Roles">
+                        <group>
+                            <field name="letrado"/>
+                            <field name="procurador"/>
+                            <field name="juzgado"/>
+                        </group>
+                    </page>
+<!--                    <page string="Expedientes como Representadosss">
+                        <group>
+                            <field name="representado_ids"/>
+                        </group>
+                    </page>
+                    <page string="Expedientes comorContrarios">
+                        <group>
+                            <field name="contrario_ids"/>
+                        </group>
+                    </page>     -->
+                </notebook>
+            </field>
+        </record>
+
+
+</odoo>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+        <record model="ir.ui.view" id="partner_procurador_filter">
+            <field name="name">res.partner.select</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+              <search string="Search Partner">
+                <field name="name"/>
+                <filter string="Clientes" name="clientes" domain="[('customer','=',True)]"/>
+                <filter string="Letrados" name="letrados" domain="[('letrado','=',True)]"/>
+                <filter string="Procuradores" name="procuradores" domain="[('procurador','=',True)]"/>
+                <filter string="Juzgados" name="juzgados" domain="[('juzgado','=',True)]"/>
+              </search>
+            </field>
+        </record>
+
+     
+        <record model="ir.actions.act_window" id="expedientes_list_action">
+            <field name="name">Expedientes</field>
+            <field name="res_model">procurador.expediente</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+         <!--   <field name="context" eval="{'search_default_my_expedientes': 1}"/>   -->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea el primer Expediente
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="clientes_list_action">
+            <field name="name">Clientes</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_clientes":1, 'default_res.partner':1}</field>
+            <field name="search_view_id" ref="partner_procurador_filter"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="letrados_list_action">
+            <field name="name">Letrados</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_letrados":1, 'default_letrado':1}</field>
+            <field name="search_view_id" ref="partner_procurador_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Crea el primer Letrado
+              </p>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="juzgados_list_action">
+            <field name="name">Juzgados</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_juzgados":1, 'default_juzgado':1}</field>
+            <field name="search_view_id" ref="partner_procurador_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Crea el primer Juzgado
+              </p>
+            </field>
+        </record>        
+
+
+        <record model="ir.actions.act_window" id="asuntos_list_action">
+            <field name="name">Asuntos</field>
+            <field name="res_model">procurador.asunto</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Crea el primer Asunto
+              </p>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="procuradores_list_action">
+            <field name="name">Procuradores</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_procuradores":1, 'default_procurador':1}</field>
+            <field name="search_view_id" ref="partner_procurador_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Crea el primer Procurador
+              </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="procedimientos_list_action">
+            <field name="name">Procedimientos</field>
+            <field name="res_model">procurador.procedimiento</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Crea el primer Procedimiento
+              </p>
+            </field>
+        </record>>
+
+        <record model="ir.actions.act_window" id="actuaciones_list_action">
+            <field name="name">Actuaciones</field>
+            <field name="res_model">procurador.actuacion</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">Crea la primera Actuacion
+              </p>
+            </field>
+        </record>
+
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_procurador_menu" name="Procurador"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="procurador_menu" name="Procurador"
+                  parent="main_procurador_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent openacademy_menu and *after* its
+             action course_list_action -->
+        <menuitem id="expedientes_menu" name="Expedientes" parent="procurador_menu"
+                  action="expedientes_list_action"/>
+        <!-- Full id location:
+             action="openacademy.course_list_action"
+             It is not required when it is the same module -->
+
+        <menuitem id="actuaciones_menu" name="Actuaciones" parent="procurador_menu"
+                  action="actuaciones_list_action"/>
+
+        <menuitem id="datos_maestros_menu" name="Datos Maestros"
+                  parent="main_procurador_menu"/>
+
+        <menuitem id="clientes_menu" name="Clientes" parent="datos_maestros_menu"
+                  action="clientes_list_action"/>
+
+        <menuitem id="letrados_menu" name="Letrados" parent="datos_maestros_menu"
+                  action="letrados_list_action"/>
+
+        <menuitem id="procuradores_menu" name="Procuradores" parent="datos_maestros_menu"
+                  action="procuradores_list_action"/>
+
+        <menuitem id="juzgados_menu" name="Juzgados" parent="datos_maestros_menu"
+                  action="juzgados_list_action"/>
+
+        <menuitem id="asuntos_menu" name="Asuntos" parent="datos_maestros_menu"
+                  action="asuntos_list_action"/>
+
+        <menuitem id="procedimientos_menu" name="Procedimientos" parent="datos_maestros_menu"
+                  action="procedimientos_list_action"/>
+
+</odoo>

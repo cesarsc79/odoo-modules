@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record model="ir.ui.view" id="expediente_form_view">
+            <field name="name">expediente.form</field>
+            <field name="model">procurador.expediente</field>
+            <field name="arch" type="xml">
+
+                <form string="Expediente Form">
+		    <header>
+			<button name="do_toggle_done" type="object"
+			string="Toggle Done" class="oe_highlight"/>
+           		<button name="do_clear_done" type="object"
+                    	string="Clear All Done" class="oe_highlight"/>
+		    </header>
+                    <sheet>
+
+<!--
+<div class="o_form_statusbar">
+	<div class="o_statusbar_buttons">
+		<button class="btn btn-sm btn-default oe_highlight o_invoice_send">
+			Enviar por correo electrónico
+		</button>
+		<button class="btn btn-sm btn-default oe_highlight">
+			Imprimir factura
+		</button>
+		<button class="btn btn-sm btn-default o_invisible_modifier">
+			Imprimir factura
+		</button>
+		<button class="btn btn-sm btn-default oe_highlight o_invisible_modifier">
+			Registrar pago
+		</button>
+	</div>
+
+	<div class="o_field_boolean o_field_widget o_checkbox o_invisible_modifier o_readonly_modifier" name="can_integrate">
+		<input type="checkbox" disabled="" id="o_field_input_1323"/>
+	</div>
+
+	<div class="o_statusbar_status o_field_widget o_readonly_modifier" name="state" data-original-title="" title="">
+		<button type="button" data-value="paid" disabled="disabled" class="btn btn-sm o_arrow_button btn-primary disabled">
+		        Pagado
+		</button>
+		<button type="button" data-value="open" disabled="disabled" class="btn btn-sm o_arrow_button btn-default disabled">
+			Abrir
+		</button>
+		<button type="button" data-value="draft" disabled="disabled" class="btn btn-sm o_arrow_button btn-default disabled">
+			Borrador
+		</button>
+
+    
+	</div>
+</div>
+-->
+
+        	                <button class="btn btn-sm btn-default oe_highlight o_invoice_send" type="object" name="do_count_tasks" string="Boton 1"/>
+        	                <button class="oe_highlight oe_right" type="object" name="do_populate_tasks" string="Boton 2" />
+                        <group string="Principal">
+			    <group string="General">
+                            <field name="name"/>
+                            <field name="autos"/>
+                            <field name="recepcion"/>
+                            <field name="procurador_id"/>
+	                    </group>
+                            <group string="Datos">
+                            <field name="asunto_id"/>
+                            <field name="procedimiento_id"/>
+                            <field name="juzgado_id"/>
+                            <field name="estado"/>
+                            </group>
+                            <group string="Datos Financieros">
+                            <field name="cliente_id"/>
+                            <field name="estado2"/>
+                            </group>
+                        </group>
+                        <notebook>
+                          <page string="Representados">
+                            <field name="representado_ids"/>
+                          </page>
+                          <page string="Contrarios">
+                            <field name="contrario_ids"/>
+                          </page>
+                          <page string="Letrados">
+                            <field name="letrado_ids"/>
+                          </page>
+                          <page string="Actuaciones">
+                            <field name="actuacion_ids"/>
+                          <page string="Description">
+			  </page>
+                            <field name="description"/>
+                          </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>   
+
+        <!-- tree/list view -->
+        <record model="ir.ui.view" id="expediente_tree_view">
+            <field name="name">expediente.tree</field>
+            <field name="model">procurador.expediente</field>
+            <field name="arch" type="xml">
+                <tree string="Expedientes">
+                    <field name="name"/>
+                    <field name="cliente_id"/>
+                    <field name="procurador_id"/>
+                    <field name="procedimiento_id"/>
+                    <field name="juzgado_id"/>
+                    <field name="estado"/>
+                    <field name="estado2"/>
+                </tree>
+            </field>
+        </record>
+        
+
+</odoo>

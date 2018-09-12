@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record model="ir.ui.view" id="asunto_form_view">
+            <field name="name">asunto.form</field>
+            <field name="model">procurador.asunto</field>
+            <field name="arch" type="xml">
+                <form string="Asunto Form">
+                    <sheet>
+			  <group>
+                          <field name="name"/>
+			  </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>   
+</odoo>
